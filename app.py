@@ -1,7 +1,9 @@
 from flask import Flask, request, jsonify
 from version_finder import compare_packages
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app, origins=["http://localhost:4200", "https://asi-pdcr-frontend-sa-dev.azurewebsites.net/"])
 
 @app.route('/packages', methods=['POST'])
 def check_packages():
@@ -31,6 +33,4 @@ def check_packages():
 
 if __name__ == '__main__':
     app.run(debug=True)
-# if __name__ == '__main__':
-#     result = compare_packages("bnlearn", "numpy", "==0.0.0","^2.2.3")
-#     print(result)
+
